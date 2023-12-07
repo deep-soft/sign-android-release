@@ -27,6 +27,11 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
+      - name: clean node_modules
+        shell: bash
+        run: |
+          rm -r node_modules
+
       - name: Setup node 16
         uses: actions/setup-node@v4
         with:
