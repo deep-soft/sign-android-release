@@ -5,7 +5,9 @@ on:
       DEBUG_MODE:
         description: DEBUG_MODE
         default: 'no'
-
+env:
+  ANDROID_SIGNING_KEY: '${{ secrets.ANDROID_SIGNING_KEY }}'
+  
 jobs:
   test_download:
     name: test_download-${{ matrix.job.cfg }}
