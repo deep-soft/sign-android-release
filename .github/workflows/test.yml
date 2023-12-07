@@ -64,6 +64,7 @@ jobs:
           echo "name_apk_full: ${{ env.name_apk_full }}"
           file "${{ env.name_apk_full }}"
           xz -d "${{ env.name_apk_full }}"
+          ls -la ./
           popd
 
       - uses: deep-soft/sign-android-release@v1.1.0
