@@ -31,14 +31,16 @@ jobs:
         shell: bash
         run: |
           rm -r node_modules
+          rm package-lock.json
 
       - name: Setup node 16
         uses: actions/setup-node@v4
         with:
           node-version: 16.x
 
-#      - run: npm install
-#      - run: npm i --save-dev @types/node
+      - run: npm install
+
+      - run: npm i --save-dev @types/node
 
       - run: npm ci
 
