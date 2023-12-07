@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         job:
-          - { cfg: win, os: windows-latest }
+          - { cfg: apk, os: windows-latest }
     steps:
       - name: checkout
         uses: deep-soft/checkout@v3
@@ -23,17 +23,17 @@ jobs:
         shell: bash
         run: |
           name_common=$(cat bin/bin-common.txt);
-          name_7z=$(cat bin/bin-${{ matrix.job.cfg }}.txt);
+          name_apk=$(cat bin/bin-${{ matrix.job.cfg }}.txt);
           echo $name_common;
-          echo $name_7z;
-          #curl refs/tags/bins/$name_7z -o $name_7z;
+          echo $name_apk;
+          #curl refs/tags/bins/$name_apk -o $name_apk;
           mkdir tmp
           pushd tmp
-          echo "curl -LOJ $name_common$name_7z;"
-          curl -LOJ $name_common$name_7z;
-          # name_7z_full=$(find . -type f -name $name_7z -print0 | xargs -0 realpath)
-          name_7z_full=$(find . -name "$name_7z" | xargs readlink -f)
-          echo "name_7z_full=$name_7z_full" >> $GITHUB_ENV
+          echo "curl -LOJ $name_common$name_apk;"
+          curl -LOJ $name_common$name_apk;
+          # name_apk_full=$(find . -type f -name $name_apk -print0 | xargs -0 realpath)
+          name_apk_full=$(find . -name "$name_apk" | xargs readlink -f)
+          echo "name_apk_full=$name_apk_full" >> $GITHUB_ENV
           echo "list: pushd"
           ls -l
           popd
@@ -44,16 +44,16 @@ jobs:
         shell: bash
         run: |
           pushd tmp
-          echo "name_7z_full: ${{ env.name_7z_full }}"
-          file "${{ env.name_7z_full }}"
-          xz -vt "${{ env.name_7z_full }}"
+          echo "name_apk_full: ${{ env.name_apk_full }}"
+          file "${{ env.name_apk_full }}"
+          xz -vt "${{ env.name_apk_full }}"
           # if [ "${{ matrix.job.cfg }}" == "win" ]; then
-          #   xz -9 ${{ env.name_7z_full }}
+          #   xz -9 ${{ env.name_apk_full }}
           #   name_xz_full=$(find . -name "*.xz" | xargs readlink -f)
           #   ls -l $name_xz_full
           #   echo "name_xz_full=$name_xz_full" >> $GITHUB_ENV            
           # else
-          #   xz -vt "${{ env.name_7z_full }}"
+          #   xz -vt "${{ env.name_apk_full }}"
           # fi
           popd
 
@@ -61,9 +61,9 @@ jobs:
         shell: bash
         run: |
           pushd tmp
-          echo "name_7z_full: ${{ env.name_7z_full }}"
-          file "${{ env.name_7z_full }}"
-          xz -d "${{ env.name_7z_full }}"
+          echo "name_apk_full: ${{ env.name_apk_full }}"
+          file "${{ env.name_apk_full }}"
+          xz -d "${{ env.name_apk_full }}"
           popd
 
       - uses: deep-soft/sign-android-release@master
