@@ -2,6 +2,10 @@ name: test download and sign
 on:
   workflow_dispatch:
     inputs:
+      RUN_TAG:
+        description: run tag
+        default: 'v1.1.0'
+        required: true
       DEBUG_MODE:
         description: DEBUG_MODE
         default: 'no'
@@ -66,7 +70,7 @@ jobs:
           xz -d "${{ env.name_apk_full }}"
           popd
 
-      - uses: deep-soft/sign-android-release@master
+      - uses: deep-soft/sign-android-release@${{ inputs.RUN_TAG }}
         name: Sign app APK
         if: env.ANDROID_SIGNING_KEY != null
         id: sign-android-apk
