@@ -87,7 +87,7 @@ jobs:
         with:
           type: zip
           filename: 'test-1'
-          directory: './tmp'
+          directory: 'tmp'
           path: '.'
           env_variable: 'zip_1'
           #inclusions: 'a'
@@ -104,7 +104,8 @@ jobs:
           tag_name: test_archives
           files: |
             ${{ env.zip_1 }}
-            ./tmp/*
+            ${{ env.SIGNED_RELEASE_FILE }}
+            ./tmp/*.apk
 
 #      - name: Upload Artifact
 #        if: ${{ matrix.job.cfg == 'win' }}
