@@ -46,6 +46,8 @@ jobs:
 
       - run: npm audit fix
 
+      - run: npm fund
+
       - run: npm run build
 
       - name: Create archive dist
