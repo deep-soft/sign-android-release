@@ -25,18 +25,18 @@ jobs:
         operating-system: [windows-latest]
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: clean node_modules
         shell: bash
         run: |
-          rm -r node_modules
-          rm package-lock.json
+          rm -r node_modules || true;
+          rm package-lock.json || true;
 
-      - name: Setup node 16
+      - name: Setup node 20
         uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 20.x
 
       - run: npm install
 
@@ -63,14 +63,14 @@ jobs:
 
       - name: Upload artifact
         continue-on-error: true
-        uses: deep-soft/upload-artifact@main
+        uses: deep-soft/upload-artifact@v4
         with:
           name: ${{ env.ZIP_RELEASE_ARCHIVE }}
           path: ${{ env.ZIP_RELEASE_ARCHIVE }}
 
       - name: Publish artifact
         continue-on-error: true
-        uses: deep-soft/action-gh-release@v1
+        uses: deep-soft/action-gh-release@v2.1
         with:
           draft: true
           tag_name: npm-build-dist
@@ -94,7 +94,7 @@ jobs:
       - name: Publish artifact - ALL
         if: ${{ inputs.archive_ALL }}
         continue-on-error: true
-        uses: deep-soft/action-gh-release@v1
+        uses: deep-soft/action-gh-release@v2.1
         with:
           draft: true
           tag_name: npm-build-ALL
