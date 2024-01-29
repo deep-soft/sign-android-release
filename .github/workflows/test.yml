@@ -19,7 +19,7 @@ jobs:
           - { cfg: apk, os: windows-latest }
     steps:
       - name: checkout
-        uses: deep-soft/checkout@v3
+        uses: deep-soft/checkout@v4
 
       - name: test download
         shell: bash
@@ -69,7 +69,7 @@ jobs:
           ls -la ./
           popd
 
-      - uses: deep-soft/sign-android-release@v1.1.0
+      - uses: deep-soft/sign-android-release@v2
         name: Sign app APK
         if: env.ANDROID_SIGNING_KEY != null
         id: sign-android-apk
@@ -81,9 +81,9 @@ jobs:
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
         env:
           # override default build-tools version (29.0.3) -- optional
-          BUILD_TOOLS_VERSION: "30.0.2"
+          BUILD_TOOLS_VERSION: "34.0.0"
 
-      - uses: deep-soft/zip-release@main
+      - uses: deep-soft/zip-release@v2
         with:
           type: zip
           filename: 'test-1'
@@ -97,7 +97,7 @@ jobs:
 
       - name: Publish archives
         continue-on-error: true
-        uses: deep-soft/action-gh-release@v1
+        uses: deep-soft/action-gh-release@v2.1
         with:
           fail_on_unmatched_files: false
           draft: true
@@ -109,7 +109,7 @@ jobs:
 
 #      - name: Upload Artifact
 #        if: ${{ matrix.job.cfg == 'win' }}
-#        uses: deep-soft/upload-artifact@v3
+#        uses: deep-soft/upload-artifact@v4
 #        with:
 #          name: xz
 #          path: |
