@@ -41,7 +41,9 @@ async function run() {
           core.error('No valid release file to sign, abort.');
           core.setFailed('No valid release file to sign.');
         }
-
+        // replace all \ with /
+        signedReleaseFile = signedReleaseFile.replaceAll('\\', '/');
+        
         // Each signed release file is stored in a separate variable + output.
         core.exportVariable(`SIGNED_RELEASE_FILE_${index}`, signedReleaseFile);
         core.setOutput(`signedReleaseFile${index}`, signedReleaseFile);
