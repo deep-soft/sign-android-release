@@ -48,6 +48,9 @@ async function run() {
         core.exportVariable(`SIGNED_RELEASE_FILE_${index}`, signedReleaseFile);
         core.setOutput(`signedReleaseFile${index}`, signedReleaseFile);
         signedReleaseFiles.push(signedReleaseFile);
+
+        console.log('SFN: [${releaseFile.name}]');
+
         ++index;
       }
 
