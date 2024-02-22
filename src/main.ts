@@ -43,7 +43,6 @@ async function run() {
         }
         // replace all \ with /
         signedReleaseFile = signedReleaseFile.replaceAll('\\', '/');
-        signedReleaseFile = signedReleaseFile.replaceAll('\', '/');
         
         // Each signed release file is stored in a separate variable + output.
         core.exportVariable(`SIGNED_RELEASE_FILE_${index}`, signedReleaseFile);
