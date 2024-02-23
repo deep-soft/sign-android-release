@@ -60,7 +60,7 @@ jobs:
       - run: npm fund
 
       - run: npm run build
-        continue-on-error: true
+        # continue-on-error: true
 
       - name: Create archive dist
         continue-on-error: true
