@@ -102,10 +102,11 @@ jobs:
           fail_on_unmatched_files: false
           draft: true
           tag_name: test_archives
+#            ./tmp/*.apk
           files: |
             ${{ env.zip_1 }}
             ${{ env.SIGNED_RELEASE_FILE }}
-            ./tmp/*.apk
+
 
 #      - name: Upload Artifact
 #        if: ${{ matrix.job.cfg == 'win' }}
