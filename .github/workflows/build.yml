@@ -33,6 +33,17 @@ jobs:
           rm -r node_modules || true;
           rm package-lock.json || true;
 
+      - name: clean dist/ and lib/
+        shell: bash
+        run: |
+          ls -la dist/
+          ls -la lib/
+          echo "rm dist/ and lib/"
+          rm dist/* || true;
+          rm lib/* || true;
+          ls -la dist/
+          ls -la lib/
+
       - name: Setup node 20
         uses: actions/setup-node@v4
         with:
