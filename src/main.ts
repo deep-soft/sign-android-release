@@ -50,7 +50,7 @@ async function run() {
         signedReleaseFiles.push(signedReleaseFile);
 
         console.log(`RFN: _ ${releaseFile.name} _`);
-        console.log(`SFN: _ ${signedReleaseFile.name} _`);
+        console.log(`SFN: _ ${signedReleaseFile} _`);
 
         ++index;
       }
