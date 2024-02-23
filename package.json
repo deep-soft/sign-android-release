@@ -5,7 +5,7 @@
   "description": "GitHub action used to sign Android release packages",
   "main": "lib/main.js",
   "scripts": {
-    "build": "tsc && ncc build lib/main.js -m",
+    "build": "tsc && ncc build dist/main.js -m",
     "test": "jest"
   },
   "repository": {
