@@ -49,7 +49,8 @@ async function run() {
         core.setOutput(`signedReleaseFile${index}`, signedReleaseFile);
         signedReleaseFiles.push(signedReleaseFile);
 
-        console.log('SFN: [${releaseFile.name}]');
+        console.log(`RFN: _ ${releaseFile.name} _`);
+        console.log(`SFN: _ ${signedReleaseFile.name} _`);
 
         ++index;
       }
@@ -66,6 +67,7 @@ async function run() {
         core.setOutput('signedReleaseFile', signedReleaseFiles[0]);
       }
       console.log('Releases signed!');
+      console.log(signedReleaseFiles.join(":"));
     } else {
       core.error("No release files (.apk or .aab) could be found. Abort.");
       core.setFailed('No release files (.apk or .aab) could be found.');
