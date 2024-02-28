@@ -36,8 +36,8 @@ jobs:
       - name: clean dist/ and lib/
         shell: bash
         run: |
-          ls -la dist/
-          ls -la lib/
+          ls -la dist/ || true;
+          ls -la lib/ || true;
           echo "rm dist/ and lib/"
           rm dist/* || true;
           rm lib/* || true;
