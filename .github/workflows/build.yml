@@ -35,14 +35,15 @@ jobs:
 
       - name: clean dist/ and lib/
         shell: bash
+        continue-on-error: true
         run: |
           ls -la dist/ || true;
           ls -la lib/ || true;
           echo "rm dist/ and lib/"
-          rm dist/* || true;
-          rm lib/* || true;
-          ls -la dist/
-          ls -la lib/
+          rm -r dist/* || true;
+          rm -r lib/* || true;
+          ls -la dist/ || true;
+          ls -la lib/ || true;
 
       - name: Setup node 20
         uses: actions/setup-node@v4
