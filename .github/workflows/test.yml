@@ -69,7 +69,7 @@ jobs:
           ls -la ./
           popd
 
-      - uses: deep-soft/sign-android-release@main
+      - uses: deep-soft/sign-android-release@master
         name: Sign app APK
         if: env.ANDROID_SIGNING_KEY != null
         id: sign-android-apk
